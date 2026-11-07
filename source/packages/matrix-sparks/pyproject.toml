@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools==84.0.0", "wheel==0.48.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "matrix-sparks"
+version = "0.1.0rc8"
+description = "SPARKS spectral continuum solvers and batch electronic grid services"
+requires-python = ">=3.11"
+dependencies = ["matrix-apoc==0.1.0rc8", "matrix-numerics==0.1.0rc8", "numpy>=1.24", "scipy>=1.15"]
+
+[project.scripts]
+sparks-response = "matrix_sparks.response_cli:main"
+sparks-photoelectron = "matrix_sparks.photoelectron_cli:main"
+
+[project.optional-dependencies]
+vibronic = ["matrix-trinity==0.1.0rc8"]
+pyscf = ["matrix-apoc[pyscf]==0.1.0rc8"]
+gaussian-fchk = ["matrix-apoc[gaussian-fchk]==0.1.0rc8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+matrix_sparks = ["native/*.cpp", "reference/tiresia/fortran/*.f90"]

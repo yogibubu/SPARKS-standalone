@@ -1,0 +1,19 @@
+{
+  "schema": "matrix.kinetics.complete_crp.implementation_lock.v1",
+  "protocol_id": "kinetics-complete-crp.v1",
+  "modules": {
+    "matrix_kinetics.complete_crp": "5a119740618bc13d2858bab23056ac71a3f8efc7f5dfe8028ea6f5d3e2a36d11",
+    "matrix_kinetics.advanced_tunneling": "9e12d6cd088bd60f3cd1bf913550e700c12222a1b9529272ac60d20af6866e94",
+    "matrix_kinetics.master_equation.molecular_inputs": "b48f7b64c8e88ed0ed2c61c0c20214af39f0e9cdcd8370c93d9cd1ff1ea874af",
+    "matrix_rovib.statistical_convolution": "55abba85780c75a3f434eb0ed21a86694d73c93f7898d316dfbce5a1ca059413",
+    "matrix_kinetics.rates": "8fa15b672878d7572e2f4175d009e753ea693d2e8f4aa468882dcd874fb70c01",
+    "matrix_trinity.transition_state": "a2db161cb2b8d660f6b7c58d31fea3203f8e0587a9625d5b4a25cfeef0ee6b29",
+    "matrix_trinity.hdc_polynomial": "f42178cf7e3d235d28a5296b670088edf2cb1b5d52471ca87d76f07400fc6376",
+    "matrix_trinity.ground_state_energy": "7e58cacfff60183d79237dfbef124700e58ead1d2cf2779f8f8f87eed20c6270",
+    "matrix_rovib.native_rotor": "d3eab377b5fe0ecaba704fdadd7973029f9002a8e23d9c03627c549e86a558e2",
+    "matrix_sentinel.quantum_rewl": "bb01d638f854f652f89f0b6274c981eb6264267eeaea09c1dd530798d19d3668",
+    "matrix_sentinel.quantum_wang_landau": "021c42a67b8d727d08fb6fbeb8b5860c8c57e0590708ea5f3039d52181d3904b",
+    "matrix_sentinel.quantum_thermal": "e16bfa0e16fceecf84c92094130ba2dbc624fe8a2512fd0e0fdc35b710c9d894"
+  },
+  "change_policy": "new_version_and_explicit_approval"
+}

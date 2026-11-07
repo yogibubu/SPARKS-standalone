@@ -1,0 +1,52 @@
+{
+  "schema": "matrix.keymaker.protocol_manifest.v1",
+  "protocol_id": "sati-phosphorescence-rates.v1",
+  "manifest_version": "1.0.0",
+  "status": "approved",
+  "owner_operation": "trinity",
+  "entrypoint": "KEYMAKER",
+  "title": "SOC-mediated phosphorescence rates",
+  "summary": "Evidence-backed QM provider selection, finite acquisition planning and matched TI/TD rate calculation through existing scientific owners; missing capabilities stop the workflow before execution.",
+  "calculation_protocol": "spectroscopy.variational.v1",
+  "aliases": [],
+  "dependencies": [
+    "sati-harmonic-vibronic.v1"
+  ],
+  "routes": [
+    {
+      "menu": "prediction_assignment",
+      "action": "sati.rates.phosphorescence",
+      "option_equals": {}
+    }
+  ],
+  "inputs": [
+    {
+      "name": "request",
+      "schema": "matrix.trinity.photophysical_rate_request.v1",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "preflight_plan",
+      "schema": "matrix.trinity.photophysical_rate_plan.v1",
+      "required": true
+    }
+  ],
+  "gates": [
+    "Select installed QM providers only from method-, basis- and state-specific certified capability evidence",
+    "Missing operator, derivative, complete nonadiabatic operator or outgoing-channel solver raises MissingPhotophysicalCapability and submits zero jobs",
+    "Preserve state identity, complex phases, channel populations and common coordinate/energy references",
+    "Finite explicitly authorized electronic points; no added keywords or implicit substitutions",
+    "Matched TI/TD fields, electronic gap, temperature, operator and physical energy-conservation model",
+    "Harmonic, perturbative, selected variational and DVR/bath nuclear models retain their existing owners and validation gates",
+    "An explicit verified compute host and bounded resources are required; reuse completed data and checkpoints"
+  ],
+  "implementation": {
+    "owner_api": "matrix_trinity.photophysical_protocols",
+    "action": "prepare_phosphorescence"
+  },
+  "coordinate_policy": "Frozen nonredundant internal coordinates by default; transport nuclear fields and all transition operators together. Shared-mode or state-specific bases are explicit.",
+  "backend_policy": "Prefer Gaussian for analytic nuclear fields and optical derivatives, ORCA for scalar-state SOC, and TURBOMOLE for certified nonadiabatic response data; actual installed method/basis/state capability evidence is mandatory. A program name is not evidence of a supported property. No missing-data approximation is inferred.",
+  "change_policy": "new_version_and_explicit_approval"
+}

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools==84.0.0", "wheel==0.48.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "matrix-dvr"
+version = "0.1.0rc8"
+description = "TRINITY DVR workflows for MATRIX"
+requires-python = ">=3.11"
+dependencies = [
+  "matrix-chem==0.1.0rc8",
+  "matrix-gf==0.1.0rc8",
+  "numpy>=1.24",
+  "scipy>=1.11",
+  "matrix-core==0.1.0rc8",
+  "matrix-engines==0.1.0rc8",
+  "matrix-link==0.1.0rc8",
+  "matrix-rovib==0.1.0rc8",
+  "matrix-smith==0.1.0rc8",
+]
+
+[project.optional-dependencies]
+integrations = [
+  "matrix-qm==0.1.0rc8",
+  "matrix-trinity==0.1.0rc8",
+  "matrix-zaff==0.1.0rc8",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,31 @@
+{
+  "schema": "matrix.zaff.rigid_water.v1",
+  "name": "degauss-3p-exppe",
+  "source_doi": "10.1021/acs.jctc.6c01678",
+  "source_table": "Table 2",
+  "published_parameters": {
+    "hydrogen_charge_e": 0.47769562,
+    "oxygen_gaussian_sigma_angstrom": 0.59927451,
+    "hydrogen_gaussian_sigma_angstrom": 0.31021588,
+    "oxygen_epsilon_kcal_per_mol": 0.18072478,
+    "oxygen_rmin_angstrom": 3.5134888,
+    "repulsive_exponent": 15.62175,
+    "attractive_exponent": 5.3698974,
+    "oh_distance_angstrom": 0.96796472,
+    "hoh_angle_degree": 111.6457
+  },
+  "exppe_parameters": {
+    "epsilon": 0.18072478,
+    "r_min": 3.5134888,
+    "alpha": 13.81432336889385
+  },
+  "conventions": {
+    "geometry": "rigid O,H,H",
+    "gaussian_width": "Cartesian standard deviation; beta_ij=[2(sigma_i^2+sigma_j^2)]^-1/2",
+    "water_vdw_pairs": "intermolecular O-O only; no O-H or H-H van der Waals",
+    "electrostatics": "intermolecular Gaussian charges, unchanged from source",
+    "confinement": "optional existing TIP3P-FB oxygen confinement",
+    "fit": "fixed depth and minimum; energy-plus-force fit on 400 points over 0.8<=r/rmin<=5; independent interleaved check",
+    "status": "radial translation; not a revalidation of source bulk-water properties"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "matrix.keymaker.protocol_manifest.v1",
+  "manifest_version": "1.0.0",
+  "status": "approved",
+  "protocol_id": "kinetics-complete-crp.v1",
+  "entrypoint": "KEYMAKER",
+  "owner_operation": "kinetics",
+  "title": "Complete resolved SAM–LAM–rotation cumulative reaction probability",
+  "summary": "Assemble owner-calculated regularized anharmonic SAM transmissions with qualified DVR LAM and resolved rotational spectra; exact mode accounting, physical energy thresholds, explicit statistical conventions and independent canonical/convergence gates precede the E,J master-equation handoff.",
+  "calculation_protocol": "kinetics.complete_crp.v1",
+  "aliases": [
+    "kinetics_complete_crp",
+    "complete_microcanonical_flux"
+  ],
+  "dependencies": [
+    "kinetics-esalc-tunneling.v1",
+    "dvr-sparse-analytic-fit.v1"
+  ],
+  "routes": [
+    {
+      "menu": "prediction_assignment",
+      "action": "kinetics.complete_crp",
+      "option_equals": {}
+    }
+  ],
+  "inputs": [
+    {
+      "name": "complete_crp_request",
+      "schema": "matrix.kinetics.complete_crp.request.v1",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "complete_resolved_crp",
+      "schema": "matrix.kinetics.complete_crp.result.v1",
+      "required": true
+    }
+  ],
+  "gates": [
+    "Native nonredundant ESALC-I fields with metric terms and explicit mode identities; one unstable reaction coordinate excluded from bound statistics",
+    "SAM transmission from resident Miller, SCT or evaluated SCTST-SCT continuation; no canonical-to-microcanonical inversion or minimum between standalone SCT and SCTST",
+    "Regularized HDCPT2/GVPT2 occupation model with declared coverage, frozen parallel WL measurement and independent replicas or exact enumeration for small controls",
+    "Every bound transverse mode belongs to SAM or a qualified separate/joint LAM DVR spectrum exactly once",
+    "Analytic-fit DVR acquisition protocol retained; intermediate spectra never trigger new electronic acquisitions",
+    "Rotation supplied as explicit integer/half-integer J blocks with M, spin and symmetry factors already included once",
+    "Absolute origin, SAM physical open threshold and each LAM zero-point energy recorded; positive spectral convolution only",
+    "Independent canonical back-integration within declared tolerance; occupation, spectrum, energy, J and grid errors have a combined budget below that tolerance",
+    "ME handoff retains resolved E,J and reference with no source or reference-rate rescaling",
+    "Versioned specification and implementation lock checked before execution; any scientific change requires a new version",
+    "Implementation lock SHA-256: a58fc19073e85c84757eb497820f4303230c19553ca02ec70f37480a9e30a4cd"
+  ],
+  "implementation": {
+    "owner_api": "matrix_kinetics.complete_crp",
+    "action": "run_complete_crp_request"
+  },
+  "coordinate_policy": "Shared ESALC-I basis and native metric derivatives upstream. Bound SAM and DVR LAM identities partition the complete transverse inventory.",
+  "backend_policy": "Backend-neutral owner artifact assembly. Electronic/IRC and finite DVR acquisition plans stay upstream; substantial validation runs only on approved compute hosts. Independent sector convolution is the declared separability approximation; coupled spectra may replace a joint LAM sector.",
+  "change_policy": "new_version_and_explicit_approval"
+}

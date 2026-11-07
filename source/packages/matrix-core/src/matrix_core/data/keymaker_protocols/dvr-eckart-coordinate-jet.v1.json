@@ -1,0 +1,47 @@
+{
+  "schema": "matrix.keymaker.protocol_manifest.v1",
+  "protocol_id": "dvr-eckart-coordinate-jet.v1",
+  "manifest_version": "1.0.0",
+  "status": "approved",
+  "owner_operation": "dvr",
+  "entrypoint": "KEYMAKER",
+  "title": "Covariant differentiable Eckart coordinate jets at nonlinear references",
+  "summary": "Use a smooth isolated-quaternion local rotation, retain complete coordinate chains and independently qualify them against finite geometry and kinetic covariance, including planar references.",
+  "calculation_protocol": "spectroscopy.variational.v1",
+  "aliases": [
+    "eckart_coordinate_jet"
+  ],
+  "dependencies": [],
+  "routes": [],
+  "inputs": [
+    {
+      "name": "centered_geometries_and_masses",
+      "schema": "matrix.dvr.local_eckart_geometry.v1",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "local_proper_rotation",
+      "schema": "matrix.dvr.local_eckart_rotation.v1",
+      "required": true
+    }
+  ],
+  "gates": [
+    "Freeze atom order, isotope masses, reference geometry, source normal vectors, their signs, normalization and every coordinate-map derivative required by the retained potential/property order.",
+    "A nonlinear planar reference is valid. Do not differentiate singular vectors of a rank-deficient Cartesian covariance to obtain higher Eckart derivatives. Use the isolated quaternion root with a nonsingular local rotational response.",
+    "Use the scalar-positive quaternion patch and four Newton steps only for local derivatives about the identical centered reference. A value-only proper alignment independently supplies finite-geometry values; linear geometries or a non-isolated rotational reference are rejected.",
+    "Check the complete first and second coordinate jet against an independent finite-geometry alignment. A first-derivative or Hessian-frequency match alone never qualifies higher derivatives. Reject a failed coordinate-jet audit.",
+    "Qualify cubic-order geometry transport through covariance of the full internal/rotation kinetic metric and its first/second derivatives. Numerical differentiation may sample analytic geometry only and must preserve derivative symmetries.",
+    "At nonstationary references include the linear force contracted with the fourth coordinate derivative. Transport potential, kinetic and electric-property tensors through a common coordinate map before selecting LAM and SAM sectors.",
+    "Keep electronic acquisition and spectral validation separate. No new electronic geometry is implied by a coordinate-jet audit. Preserve completed electronic and analytic-geometry data and the finite-budget DVR protocol.",
+    "Freeze protocol and owner content fingerprints, save the independent audit and reject reuse of artifacts whose coordinate-map evidence differs. New scientific rules require a new version and explicit approval."
+  ],
+  "implementation": {
+    "owner_api": "matrix_dvr.eckart_jet",
+    "action": "local_eckart_rotation_torch"
+  },
+  "coordinate_policy": "Complete nonredundant vibrational chart and proper rotation at a nonlinear reference; independent value-only alignment; no singular-vector differentiation for higher jets.",
+  "backend_policy": "Local analytic geometry differentiation and finite geometry audits on the authorized compute host; no electronic callback or automatic spectral acceptance.",
+  "change_policy": "new_version_and_explicit_approval"
+}

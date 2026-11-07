@@ -1,0 +1,50 @@
+{
+  "schema": "matrix.keymaker.protocol_manifest.v1",
+  "protocol_id": "trinity-reference-consistent-composite-field.v1",
+  "manifest_version": "1.0.0",
+  "status": "approved",
+  "owner_operation": "trinity",
+  "entrypoint": "KEYMAKER",
+  "title": "Reference-consistent composite potential with mandatory residual forces",
+  "summary": "Executable assembly of higher-level slopes and directional curvatures in a frozen normal frame; preserve all residual forces and reject stationary VPT2 before full reference qualification.",
+  "calculation_protocol": "surface.selective_anharmonic.v1",
+  "aliases": [
+    "trinity_reference_consistent_composite"
+  ],
+  "dependencies": [
+    "trinity-harmonic-field.v1"
+  ],
+  "routes": [],
+  "inputs": [
+    {
+      "name": "composite_request",
+      "schema": "matrix.trinity.reference_consistent_composite_request.v1",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "composite_result",
+      "schema": "matrix.trinity.reference_consistent_composite_result.v1",
+      "required": true
+    }
+  ],
+  "gates": [
+    "Freeze reference geometry, atom order, isotopologue, masses, normal-mode vectors, normalization, units, parent tensors and electronic level including triples scaling.",
+    "Acquire energies along complete frozen normal directions, never reinterpret individual primitive coordinate displacements as normal modes. One explicitly authorized +/- pair is allowed; retain its finite-step gradient and curvature estimates and report their numerical qualification separately.",
+    "Install BOTH high-level gradient and curvature as target minus current exactly once. No diagnostic-only discard of electronic slopes. Preserve unacquired mixed derivatives and source higher derivatives.",
+    "At a nonstationary reference retain the linear potential. A Hessian pullback includes F1 times the second coordinate derivative, and the fourth potential derivative includes F1 times the fourth coordinate derivative. Missing coordinate-map derivatives are fatal.",
+    "Potential assembly is not spectral qualification. Stationary VPT2 is blocked until a qualified stationary reference exists; otherwise use a qualified nonstationary variational Hamiltonian retaining linear forces.",
+    "Recentering or changing the Hamiltonian coordinates requires joint transport of potential, metric, scalar kinetic correction, dipoles and rotational operators with matched counterterms. Never shift only frequencies or the potential.",
+    "A local quartic jet does not qualify a global XH profile, LAM surface or mixed resonance. Preserve the finite analytic-fit acquisition protocol for global DVR potentials.",
+    "Keep experimental bands out of field construction and numerical acceptance thresholds. Curvature percentage differences flag inspection priorities, not automatic correctness or failure.",
+    "Bind input/output contents and protocol with SHA256, reject duplicate update identities and mismatched references, keep previous artifacts immutable. New physics or acceptance rules require a new approved protocol version."
+  ],
+  "implementation": {
+    "owner_api": "matrix_trinity.reference_consistent_composite",
+    "action": "assemble_reference_consistent_field"
+  },
+  "coordinate_policy": "Same-origin complete frozen normal directions; explicit forces, derivative order, units and coordinate hashes. No silent recentering or tensor rotation.",
+  "backend_policy": "Pure assembly from acquired data. No scheduler, electronic acquisition, dense numerical cascade or automatic spectral qualification.",
+  "change_policy": "new_version_and_explicit_approval"
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "matrix.keymaker.protocol_manifest.v1",
+  "protocol_id": "trinity-higher-level-curvatures.v1",
+  "manifest_version": "1.0.0",
+  "status": "approved",
+  "owner_operation": "trinity",
+  "entrypoint": "KEYMAKER",
+  "title": "Frozen-coordinate higher-level curvature retrieval and application",
+  "summary": "Retrieve qualified directional electronic curvatures or assigned literature harmonic frequencies; construct a hash-bound replacement ledger in the frozen lower-level frame, without double counting.",
+  "calculation_protocol": "surface.selective_anharmonic.v1",
+  "aliases": [
+    "trinity_higher_level_curvatures"
+  ],
+  "dependencies": [
+    "trinity-harmonic-field.v1"
+  ],
+  "routes": [],
+  "inputs": [
+    {
+      "name": "curvature_request",
+      "schema": "matrix.trinity.higher_level_curvature_request.v1",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "name": "replacement_ledger",
+      "schema": "matrix.trinity.higher_level_curvature_update.v1",
+      "required": true
+    }
+  ],
+  "gates": [
+    "Freeze geometry, isotopologue, atom order, ESALC-I definition, masses, normal-coordinate normalization, symmetry and source-field hashes before retrieval",
+    "Record exact method, basis, frozen-core treatment, relativistic/core-valence scope and triples scaling; CCSD(T*)-F12c is not CCSD(T)-F12c",
+    "Reuse matching electronic checkpoints; no electronic job is launched by retrieval or validation; a new finite sample plan requires explicit authorization",
+    "Literature route requires a primary source/table/row, conformer and isotopologue identity, true harmonic frequencies, one-to-one symmetry assignment and explicit mode-shape assumption when eigenvectors are absent",
+    "Frequency rank alone is not a mode assignment; near-degenerate modes require an explicit subspace treatment before scalar replacement",
+    "In dimensionless frozen q with G0=omega_ref, convert literature frequency to curvature K=omega_high squared / omega_ref; never substitute frequency directly or add an origin correction",
+    "Electronic route requires the same back-transformation, reference energy/state, at least two declared central steps and a finite-difference uncertainty within a predeclared bound",
+    "Retain the directional gradient or document a bounded neglect; recenter a shifted hybrid field with joint transport of potential, full metric/scalar and properties",
+    "Replace target minus CURRENT diagonal exactly once; reject duplicate update identifiers and mismatched parent-field hashes; preserve unacquired mixed terms",
+    "Curvature replacement alone never qualifies an XH variational profile: physical bond derivatives 2/3/4, independent electronic validation, global shape and modal checks are separate mandatory gates",
+    "Keep experimental fundamentals out of source selection, fitting and threshold tuning; report assignment/model/numerical uncertainties separately",
+    "Keep source and failed artifacts immutable; write a new output with provenance, protocol hash and an explicit application versus spectral qualification distinction"
+  ],
+  "implementation": {
+    "owner_api": "matrix_trinity.higher_level_curvatures",
+    "action": "prepare_higher_level_curvature_update"
+  },
+  "coordinate_policy": "Freeze the source frame. Apply scalar diagonal replacements only with certified correspondence. Carry gradients; transform all operators together if recentering or changing coordinates. No silent rotation of incomplete derivative tensors.",
+  "backend_policy": "Pure retrieval/validation and replacement-ledger preparation from existing artifacts; no electronic scheduler, no spectral fit and no automatic field or checkpoint overwrite.",
+  "change_policy": "new_version_and_explicit_approval"
+}

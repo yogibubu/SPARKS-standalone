@@ -1,0 +1,44 @@
+{
+  "schema": "matrix.keymaker.protocol_manifest.v1",
+  "manifest_version": "1.0.0",
+  "status": "approved",
+  "protocol_id": "kinetics-ts0-ts1-master-equation.v1",
+  "entrypoint": "KEYMAKER",
+  "owner_operation": "kinetics",
+  "title": "Micro-variational TS0 to TS1 pressure-dependent master equation",
+  "summary": "Definitive pressure-dependent kinetics protocol: inverse-power long-range TS0 capture, explicit angular and partial-wave channel minimization, rovibrational state normalization, collisional energy/J transfer, and microcanonical TS1 product branching.",
+  "calculation_protocol": "kinetics.ts0_ts1_master_equation.v1",
+  "aliases": ["kinetics_ts0_ts1", "ts0_capture_master_equation", "vrc_reduced_master_equation"],
+  "dependencies": ["kinetics-esalc-tunneling.v1"],
+  "routes": [
+    {
+      "menu": "prediction_assignment",
+      "action": "kinetics.ts0_ts1_master_equation",
+      "option_equals": {"mode": "microvariational_ts0_ts1"}
+    }
+  ],
+  "inputs": [
+    {"name": "master_equation_request", "schema": "matrix.kinetics.master_equation.request.v1", "required": true},
+    {"name": "ts0_radial_tail", "schema": "matrix.kinetics.ts0.inverse_power_tail.v1", "required": true},
+    {"name": "ts0_internal_state_inventory", "schema": "matrix.kinetics.ts0.internal_state_inventory.v1", "required": true}
+  ],
+  "outputs": [
+    {"name": "pressure_dependent_rates", "schema": "matrix.kinetics.master_equation.result.v1", "required": true},
+    {"name": "ts0_diagnostics", "schema": "matrix.kinetics.ts0.capture_diagnostics.v1", "required": true}
+  ],
+  "gates": [
+    "Separated-fragment asymptote is fitted independently and never absorbed into C4 or C6",
+    "Crisci-Ballotta-Mendolicchio-Barone R^-4+R^-6 continuation is validated at withheld radial points",
+    "TS0 minimizes the weighted open-channel count over the radial dividing surface for every energy and J",
+    "Angular, partial-wave, rotational and vibrational weights are normalized exactly once",
+    "TS1 product flux is supplied as a microcanonical cumulative reaction probability and is not identified with capture",
+    "Energy and angular-momentum transfer use one reversible detailed-balance collision kernel",
+    "Master-equation conservation, chemical detailed balance and stationary residual gates pass",
+    "The protocol reports capture, return and product branching separately",
+    "VRC-VTST multidimensional Monte Carlo remains an explicitly declared future extension"
+  ],
+  "implementation": {"owner_api": "matrix_kinetics.master_equation", "action": "run_request"},
+  "coordinate_policy": "The entrance coordinate is the intermolecular R with explicit angular channels; TS1 uses the validated ESALC-I reaction coordinate and shared rovibrational state origin.",
+  "backend_policy": "Electronic fields are acquired upstream by the declared backend. Kinetic assembly is backend-neutral and consumes XYXIN-compatible state measures, inverse-power tails and microcanonical fluxes.",
+  "change_policy": "new_version_and_explicit_approval"
+}

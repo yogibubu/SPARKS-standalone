@@ -1,0 +1,16 @@
+# Offline dependencies belong to release assets.
+/wheels/
+*.whl
+*.tar.gz
+*.zip
+/SHA256SUMS.txt
+# Local environments and build products.
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+.DS_Store
+/example-output/
