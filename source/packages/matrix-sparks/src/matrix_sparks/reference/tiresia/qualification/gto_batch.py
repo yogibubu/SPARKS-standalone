@@ -2,6 +2,8 @@
 
 import argparse
 import json
+import os
+import shutil
 import socket
 import subprocess
 from pathlib import Path
@@ -86,9 +88,12 @@ write(*,*) 'passed 600 points; maximum scaled error',largest""",
         ]
     )
     binary = args.output / "qualify.exe"
+    mpifort = os.environ.get("SPARKS_MPIFORT") or shutil.which("mpifort")
+    if not mpifort:
+        raise RuntimeError("set SPARKS_MPIFORT or install mpifort on the qualification host")
     subprocess.run(
         [
-            "/home/enzo/opt/openmpi/4.1.8/bin/mpifort",
+            mpifort,
             "-O2",
             "-fcheck=all",
             "-ffree-line-length-none",
