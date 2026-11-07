@@ -10,7 +10,8 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .pytest_cache/
-build/
+/build/
+/source/packages/*/build/
 dist/
 .DS_Store
 /example-output/
